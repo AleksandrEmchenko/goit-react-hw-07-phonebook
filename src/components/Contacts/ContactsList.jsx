@@ -11,18 +11,29 @@ import { getContactsThunk } from "components/redux/thunk";
 // };
 
 function ContactsList() {
+
   const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector((state) => state.contacts);
+
+  const items = useSelector((store) => store.contacts.contacts.items);
+  const error = useSelector((store) => store.contacts.contacts.error);
+  const isLoading = useSelector((store) => store.contacts.contacts.loading);
+
+
+
+ 
+  // const { items, isLoading, error } = useSelector((store) => store.contacts);
 
   useEffect(() => {
     dispatch(getContactsThunk());
+    
   }, [dispatch]);
   
-console.log(items)
+
   // const contacts = useSelector(getContacts);
   // const filter = useSelector(getFilter);
 
-  // console.log(contacts)
+  console.log(items);
+  console.log(isLoading);
 
   // const filteredContacts = (contacts, filter) => {
   //   return contacts.filter(contact =>
@@ -38,7 +49,7 @@ console.log(items)
 
   return (
     <div>
-      {isLoading && <h3> Please wait. Contacts are downloaded</h3>}
+      {isLoading && <h3> Please wait. Contacts are downloading</h3>}
 
       {items && Array.isArray(items) && items.length !== 0 ? (
         <List>

@@ -14,6 +14,8 @@ export const createContacts = async (data) => {
 };
 
 export const deleteContacts = async (id) => {
-  const responce = await fetch(`${BASE_URL}/contacts/${id}`);
+  const responce = await fetch(`${BASE_URL}/contacts/${id}`, {method: 'DELETE'});
   return await responce.json();
 };
+
+
