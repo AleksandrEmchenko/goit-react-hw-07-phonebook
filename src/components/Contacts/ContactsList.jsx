@@ -16,7 +16,7 @@ function ContactsList() {
 
   const items = useSelector((store) => store.contacts.contacts.items);
   const error = useSelector((store) => store.contacts.contacts.error);
-  const isLoading = useSelector((store) => store.contacts.contacts.loading);
+  const isLoading = useSelector((store) => store.contacts.contacts.isLoading);
 
 
 

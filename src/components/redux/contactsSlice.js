@@ -6,7 +6,7 @@ import {
   getContactsThunk,
 } from "./thunk";
 
-const {items, isLoading, error} = initialState.contacts;
+// const {items, isLoading, error} = initialState.contacts;
 
 const handlePending = (state) => {
   state.contacts.isLoading = true;
@@ -38,8 +38,8 @@ const handleFulfilledDel = (state, { payload }) => {
 };
 
 const handleRejected = (state, { payload }) => {
-  isLoading = false;
-    error = payload;
+  state.contacts.isLoading = false;
+  state.contacts.error = payload;
 };
 
 export const contactsSlice = createSlice({
