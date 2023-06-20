@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ItemList = styled.li`
   display: flex;
   flex-direction: row;
-  width: 300px;
+  width: 500px;
   justify-content: space-between;
   margin-bottom: 2px;
 `;

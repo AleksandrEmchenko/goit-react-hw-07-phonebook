@@ -10,11 +10,11 @@ function App() {
     <div>
       <h1>Phonebook</h1>
 
-      {/* <ContactForm /> */}
+      <ContactForm />
 
       <h2>Contacts</h2>
 
-      {/* <Filter /> */}
+      <Filter />
       {/* {isLoading && <h3> Please wait. Contacts are downloading</h3>} */}
       <ContactsList />
     </div>

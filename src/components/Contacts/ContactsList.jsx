@@ -1,51 +1,27 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { getFilter } from "components/redux/selector";
-import ContactItem from "components/ContactItem/ContactItem";
-import { List } from "../Contacts/Contacts.styled";
-import { useEffect } from "react";
-import { getContactsThunk } from "components/redux/thunk";
+import { useDispatch, useSelector } from 'react-redux';
 
-// const getVisiblesContacts = contacts.filter((contact) => contact.name.includes(filter));
-// const getVisiblesContacts = (contacts, setStatusFilter) => {
-//   contacts.filter((contact) => contact.name.includes(filter));
-// };
+import ContactItem from 'components/ContactItem/ContactItem';
+import { List } from '../Contacts/Contacts.styled';
+import { useEffect } from 'react';
+import { getContactThunk } from 'redux/thunk';
+import { selectContacts, selectError, selectFilter, selectIsLoading } from 'redux/selectors';
 
 function ContactsList() {
-
   const dispatch = useDispatch();
 
-  const items = useSelector((store) => store.contacts.contacts.items);
-  const error = useSelector((store) => store.contacts.contacts.error);
-  const isLoading = useSelector((store) => store.contacts.contacts.isLoading);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
 
 
- 
-  // const { items, isLoading, error } = useSelector((store) => store.contacts);
+
+  const items = useSelector(selectContacts);
+  const { filter } = useSelector(selectFilter);
 
   useEffect(() => {
-    dispatch(getContactsThunk());
-    
+    dispatch(getContactThunk());
   }, [dispatch]);
-  
 
-  // const contacts = useSelector(getContacts);
-  // const filter = useSelector(getFilter);
-
-  console.log(items);
-  console.log(isLoading);
-
-  // const filteredContacts = (contacts, filter) => {
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase())
-  //   );
-  // };
-
-  // const visibleContacts = filteredContacts(contacts, filter);
-
-  // const visibleContacts = (contacts, setStatusFilter) => {
-  //   return contacts.filter(contact => !contact.name.includes(filter));
-  // }
 
   return (
     <div>
@@ -53,12 +29,12 @@ function ContactsList() {
 
       {items && Array.isArray(items) && items.length !== 0 ? (
         <List>
-          {items.map((contact) => {
+          {items.filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase())).map(contact => {
             return <ContactItem key={contact.id} contact={contact} />;
           })}
         </List>
       ) : (
-        "Your contact list is empty"
+        'Your contact list is empty'
       )}
       {error && <h3>Oops. Something went wrong.</h3>}
     </div>
