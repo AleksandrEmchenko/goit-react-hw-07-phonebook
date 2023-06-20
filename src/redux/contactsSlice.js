@@ -1,14 +1,13 @@
-// const {items, isLoading, error} = initialState.contacts;
 import {
   getContactThunk,
   createContactThunk,
   deleteContactThunk,
-} from './thunk';
+} from "./thunk";
 
-import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
+import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "./initialState";
 
-const handlePending = state => {
+const handlePending = (state) => {
   state.contacts.isLoading = true;
   state.contacts.error = null;
 };
@@ -28,7 +27,7 @@ const handleFulfilledCreate = (state, { payload }) => {
 const handleFulfilledDel = (state, { payload }) => {
   state.contacts.isLoading = false;
 
-//------------Робочий варіант
+  //------------Робочий варіант
   // return {
   //   ...state,
   //   contacts: {
@@ -36,17 +35,16 @@ const handleFulfilledDel = (state, { payload }) => {
   //     items: state.contacts.items.filter(contact => contact.id !== payload),
   //   },
   // };
-//------------/Робочий варіант
+  //------------/Робочий варіант
 
-//------------Робочий варіант
+  //------------Робочий варіант
   const index = state.contacts.items.findIndex(
-    contact => contact.id === payload.id
+    (contact) => contact.id === payload.id
   );
   state.items.splice(index, 1);
 
   state.contacts.error = null;
-//------------/Робочий варіант
-
+  //------------/Робочий варіант
 };
 
 const handleRejected = (state, { payload }) => {
@@ -55,9 +53,9 @@ const handleRejected = (state, { payload }) => {
 };
 
 export const contactsSlice = createSlice({
-  name: 'contacts',
+  name: "contacts",
   initialState,
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(getContactThunk.pending, handlePending)
       .addCase(getContactThunk.fulfilled, handleFulfilledGet)

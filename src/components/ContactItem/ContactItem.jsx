@@ -7,6 +7,7 @@ export function ContactItem({ contact }) {
 
   const handleDelete = (contactId) => {
     dispatch(deleteContactThunk(contactId));
+    
   };
 
   return (

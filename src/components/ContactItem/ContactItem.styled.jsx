@@ -10,6 +10,7 @@ export const ItemList = styled.li`
 
 export const Contact = styled.span`
   font-weight: 500;
+  /* text-align: left; */
 `;
 
 export const ContactBox = styled.span`

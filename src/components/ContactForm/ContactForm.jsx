@@ -65,9 +65,9 @@ function ContactForm() {
               required
             />
           </ContactLabel>
+        <ButtonSub type="submit">Add contact</ButtonSub>
         </Container>
 
-        <ButtonSub type="submit">Add contact</ButtonSub>
       </form>
     </div>
   );
