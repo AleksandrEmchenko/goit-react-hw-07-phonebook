@@ -33,17 +33,17 @@ const handleFulfilledDel = (state, { payload }) => {
   //   contacts: {
   //     ...state.contacts,
   //     items: state.contacts.items.filter(contact => contact.id !== payload),
-  //   },
+  //      },
   // };
   //------------/Робочий варіант
 
   //------------Робочий варіант
+  state.contacts.error = null;
   const index = state.contacts.items.findIndex(
     (contact) => contact.id === payload.id
   );
-  state.items.splice(index, 1);
+  state.contacts.items.splice(index, 1);
 
-  state.contacts.error = null;
   //------------/Робочий варіант
 };
 

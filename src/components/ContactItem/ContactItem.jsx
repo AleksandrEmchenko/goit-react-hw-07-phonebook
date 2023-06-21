@@ -6,7 +6,7 @@ export function ContactItem({ contact }) {
   const dispatch = useDispatch();
 
   const handleDelete = (contactId) => {
-    dispatch(deleteContactThunk(contactId));
+   dispatch(deleteContactThunk(contactId));
     
   };
 
