@@ -13,7 +13,7 @@ const initialState = {
     isLoading: false,
     error: null,
   },
-  filter: '',
+  filter: "",
 };
 
 const handlePending = (state) => {
@@ -35,28 +35,16 @@ const handleFulfilledCreate = (state, { payload }) => {
 
 const handleFulfilledDel = (state, { payload }) => {
   state.contacts.isLoading = false;
-  console.log(payload.id)
-  //------------Робочий варіант
-  // return {
-  //   ...state,
-  //   contacts: {
-  //     ...state.contacts,
-  //     items: state.contacts.items.filter(contact => contact.id !== payload),
-  //      },
-  // };
-  //------------/Робочий варіант
 
-  //------------Робочий варіант
   state.contacts.error = null;
 
   const index = state.contacts.items.findIndex(
-    (contact) => contact.id === payload.id
-    
+    (contact) => contact.id === payload
   );
-  console.log(payload.id)
-  state.contacts.items.splice(index, 1);
-  
-  //------------/Робочий варіант
+  if (index !== -1) {
+    state.contacts.items.splice(index, 1);
+  }
+  // state.contacts.items = state.contacts.items.filter(contact => contact.id !== payload)
 };
 
 const handleRejected = (state, { payload }) => {
