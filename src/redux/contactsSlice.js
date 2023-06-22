@@ -5,7 +5,16 @@ import {
 } from "./thunk";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
+// import { initialState } from "./initialState";
+
+const initialState = {
+  contacts: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
+  filter: '',
+};
 
 const handlePending = (state) => {
   state.contacts.isLoading = true;
@@ -26,7 +35,7 @@ const handleFulfilledCreate = (state, { payload }) => {
 
 const handleFulfilledDel = (state, { payload }) => {
   state.contacts.isLoading = false;
-
+  console.log(payload.id)
   //------------Робочий варіант
   // return {
   //   ...state,
@@ -39,11 +48,14 @@ const handleFulfilledDel = (state, { payload }) => {
 
   //------------Робочий варіант
   state.contacts.error = null;
+
   const index = state.contacts.items.findIndex(
     (contact) => contact.id === payload.id
+    
   );
+  console.log(payload.id)
   state.contacts.items.splice(index, 1);
-
+  
   //------------/Робочий варіант
 };
 
